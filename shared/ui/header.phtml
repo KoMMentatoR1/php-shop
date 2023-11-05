@@ -1,0 +1,16 @@
+<header class="header">
+    <a href="/" class="logo">
+        <div class="header_logo">
+        <img class="logo_icon" src="/shared/assets/photo-camera.png" />
+        </div>
+        <div class="logo_text">Кадро магия</div>
+        <script src="../../index.js"></script>
+    </a>
+    <?php session_start();
+    if (isset($_SESSION['username'])): ?>
+      <a class="enter_button" href='/logout'>Выйти</a>
+    <?php else: ?>
+      <a class="enter_button" href='/login'>Войти</a>
+    <?php endif; ?>
+ 
+</header>

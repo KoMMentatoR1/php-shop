@@ -1,0 +1,25 @@
+<h2 class="content_header"><?= $name ?></h2>
+<div class="table_container">
+    <table class="product_table">
+        <thead>
+            <tr>
+                <th class="table_header">Фото</th>
+                <th class="table_header">Название</th>
+                <th class="table_header">Основные характеристики</th>
+                <th class="table_header">Цена</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+                $category = $name;
+                include 'C:\MAMP\htdocs\backend\get_table_data.php'
+            ?>
+        </tbody>
+    </table>
+    <script>
+        const rows = document.querySelectorAll('.clicable')
+        for (let row of rows) {
+            row.onclick = () => window.location.href = row.getAttribute('data-href')
+        }
+    </script>
+</div>

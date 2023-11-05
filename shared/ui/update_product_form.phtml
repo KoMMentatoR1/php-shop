@@ -1,0 +1,69 @@
+<div class="info_container">
+    <h2 class="content_header">Изменить продукт</h2>
+    <form class="form">
+        <div class="form_container">
+            <label for="name">
+                <div class="label">
+                    Название    
+                </div>
+                <input required placeholder="Введите название товара" id="name" class="input" name="name" />
+            </label> 
+            <label for="characteristocs">
+                <div class="label">
+                    Характеристики товара      
+                </div>
+                <input required placeholder="Введите характеристики товара" id="characteristocs" class="input" name="characteristocs" />
+            </label>
+            <label for="cost">
+                <div class="label">
+                    Цена товара      
+                </div>
+                <input required placeholder="Введите цену товара" id="cost" class="input" type="number" name="cost" />
+            </label>
+            <label for="photo">
+                <div class="label">
+                    Фото товара     
+                </div>
+                <input required placeholder="Введите ссылку на фото товара" id="photo" class="input" name="photo" />
+            </label>
+        </div>
+        <?php
+            if (isset($_GET['error'])) {
+                echo "<h3 class='error'>" . $_GET['error'] . "</h3>";
+            }
+        ?>
+        <button class="form_button" type="submit">Изменить</button>
+    </form>
+    <script>
+        const name = document.getElementById('name');
+        const characteristocs = document.getElementById('characteristocs');
+        const cost = document.getElementById('cost');
+        const photo = document.getElementById('photo');
+        const form_button = document.querySelector('.form_button');
+        const id = '<?php echo $_GET['id']; ?>';
+        fetch('../../backend/get_product_data.php?id=' + id)
+            .then(response => response.text())
+            .then(data => {
+                const parseData = JSON.parse(data);
+                name.value = parseData.product_name;
+                characteristocs.value = parseData.product_features;
+                photo.value = parseData.product_image || '';
+                cost.value = parseData.price;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+        form_button.onclick = (event) => {
+            event.preventDefault();
+            fetch('../../backend/update_product.php', {
+                method: 'POST',
+                body: JSON.stringify({ name: name.value, characteristocs: characteristocs.value, cost: cost.value, photo: photo.value || undefined, id }),
+                success: function(responseupdatedContent) {
+                    console.log(response);
+                }    
+            });
+            location.reload();
+        }
+    </script>    
+</div>   

@@ -1,0 +1,16 @@
+:root {
+    --navbar-height: 70px;
+    --footer-height: 70px;
+
+    --sidebar-width: 350px;
+
+    --border-color: #bdbdbd;
+    --primary-bg-color: #1e88e5;
+    --secondary-bg-color: #f0f0f0;
+    --primary-bg-color-hover: #0e56a8;
+    --primary-color: #ffffff;
+    --secondary-color: #1565c0;
+    --error-color: #c62828;
+    --error-color-hover: rgb(145, 28, 28)28;
+  }
+  
